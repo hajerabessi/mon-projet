@@ -5,8 +5,7 @@ pipeline {
         GIT_REPO_URL = 'https://github.com/hajerabessi/mon-projet.git' 
         GIT_BRANCH = 'master' 
         GIT_CREDENTIALS_ID = 'github-credentials' 
-        SONARQUBE_URL = 'http://localhost:9000'
-        SONARQUBE_CREDENTIALS = 'sonar-token'
+      
     }
 
     stages {
@@ -19,7 +18,7 @@ pipeline {
             }
         }   
 }
-stage('Build Project with Maven') {
+    stage('Build Project with Maven') {
             steps {
                 script {
                     
