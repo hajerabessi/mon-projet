@@ -2,16 +2,20 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO_URL = 'https://github.com/hajerabessi/mon-projet.git' // Replace with your Git repo URL
-        GIT_BRANCH = 'master' // Replace with your desired branch
+        GIT_REPO_URL = 'https://github.com/hajerabessi/mon-projet.git'
+        GIT_BRANCH = 'master' 
     }
 
     stages {
         stage('Clone Repository') {
             steps {
                 script {
-                    // Checkout the code from the Git repository
-                    git url: "${GIT_REPO_URL}", branch: "${GIT_BRANCH}"
+                   
+                    ggit(
+                        url: 'https://github.com/hajerabessi/mon-projet.git',
+                        branch: 'master', 
+                        credentialsId: 'github-credentials' 
+                    )
                 }
             }
         }
@@ -19,7 +23,7 @@ pipeline {
         stage('Show Status') {
             steps {
                 script {
-                    // Show Git status to verify successful checkout
+                    
                     sh 'git status'
                 }
             }
