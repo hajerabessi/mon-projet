@@ -28,15 +28,5 @@ stage('Build Project with Maven') {
             }
         }
         
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    
-                    withSonarQubeEnv('SonarQube') {
-                        sh 'mvn sonar:sonar -Dsonar.projectKey=mon-projet -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login= {SONARQUBE_CREDENTIALS}'
-                    }
-                }
-            }
-        }
 
 }
