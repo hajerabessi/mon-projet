@@ -2,42 +2,21 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO_URL = 'https://github.com/hajerabessi/mon-projet.git'
+        GIT_REPO_URL = 'https://github.com/hajerabessi/mon-projet.git' 
         GIT_BRANCH = 'master' 
+        GIT_CREDENTIALS_ID = 'github-credentials' 
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                script {
-                   
-                    ggit(
-                        url: 'https://github.com/hajerabessi/mon-projet.git',
-                        branch: 'master', 
-                        credentialsId: 'github-credentials' 
-                    )
-                }
-            }
-        }
-
-        stage('Show Status') {
+        stage('Cloner le dépôt') {
             steps {
                 script {
                     
-                    sh 'git status'
+                    git url: "${GIT_REPO_URL}", branch: "${GIT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}"
                 }
             }
         }
-    }
 
-    post {
-        success {
-            echo 'Successfully cloned the repository!'
-        }
-
-        failure {
-            echo 'Failed to clone the repository.'
-        }
-    }
+     
 }
-
+}
