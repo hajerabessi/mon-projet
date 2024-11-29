@@ -11,10 +11,11 @@ pipeline {
         stage('Cloner le dépôt') {
             steps {
                 script {
+                   
                     git url: "${GIT_REPO_URL}", branch: "${GIT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}"
                 }
             }
         }
-      
-    }
+    }   
 }
+
